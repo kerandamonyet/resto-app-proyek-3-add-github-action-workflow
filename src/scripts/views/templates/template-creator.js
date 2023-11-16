@@ -10,7 +10,7 @@ const createRestaurantDetailTemplate = (restaurant) => `
             <span> ${restaurant.name} </span>
         </div>
         <div class="restaurant-detail__header left-side">
-            <img data-src="${CONFIG.BASE_URL_IMAGE + restaurant.pictureId}" alt="${restaurant.name}" class="lazyload restaurant-detail__header__poster">
+            <img width="640" height="360" data-src="${CONFIG.BASE_URL_IMAGE + restaurant.pictureId}" alt="${restaurant.name}" class="lazyload restaurant-detail__header__poster">
         </div>
         <div class="restaurant-detail__content right-side">
             <h2><span>${restaurant.name}</span></h2>
@@ -56,7 +56,7 @@ const createRestaurantDetailTemplate = (restaurant) => `
 const createRestaurantItemTemplate = (restaurant) => `
     <div class="restaurant-item">
         <div class="restaurant-item__header">
-            <img class="lazyload restaurant-item__header__poster lazyload" alt="${restaurant.name}"
+            <img width="640" height="360" class="lazyload restaurant-item__header__poster lazyload" alt="${restaurant.name}"
                 data-src="${CONFIG.BASE_URL_IMAGE + restaurant.pictureId}">
             <div class="restaurant-item__header__city">
                 <p><span class="restaurant-item__header__city__title">${restaurant.city}</span></p>
