@@ -6,6 +6,7 @@ const WorkboxWebpackPlugin = require('workbox-webpack-plugin');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const ImageminWebpackPlugin = require('imagemin-webpack-plugin').default;
 const ImageminMozjpeg = require('imagemin-mozjpeg');
+const CompressionPlugin = require('compression-webpack-plugin');
 
 module.exports = {
   entry: {
@@ -85,6 +86,10 @@ module.exports = {
           },
         },
       ],
+    }),
+    new CompressionPlugin({
+      test: /\.js(\?.*)?$/i,
+      filename: '[path][base].gz',
     }),
     new BundleAnalyzerPlugin({
       analyzerMode: 'static',
