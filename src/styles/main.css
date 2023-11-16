@@ -21,6 +21,11 @@ a, input, button {
   min-height: 44px;
   
   }
+  
+  img {
+    height: auto;
+    width: 100%;
+  }
 /** 
   skip to content
 **/
