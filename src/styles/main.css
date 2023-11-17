@@ -550,3 +550,39 @@ footer h4 {
   color: white;
   opacity: 0.8;
 }
+
+/*
+  loading 
+*/
+
+.loading-indicator {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.loading-indicator-circle {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 4px solid #ccc;
+  border-top-color: #176B87;
+  animation: loading-animation 1s linear infinite;
+  margin-bottom: 10px;
+}
+
+.loading-indicator-text {
+  font-size: 18px;
+  color: #6d5d6e;
+}
+
+@keyframes loading-animation {
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

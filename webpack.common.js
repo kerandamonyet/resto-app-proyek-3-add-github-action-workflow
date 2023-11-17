@@ -93,6 +93,8 @@ module.exports = {
     }),
     new BundleAnalyzerPlugin({
       analyzerMode: 'static',
+      openAnalyzer: false,
+
     }),
     new ImageminWebpackPlugin({
       plugins: [

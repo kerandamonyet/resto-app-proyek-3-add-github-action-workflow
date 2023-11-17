@@ -1,3 +1,5 @@
+/* eslint-disable no-promise-executor-return */
+/* eslint-disable class-methods-use-this */
 import routes from '../routes/routes';
 import UrlParser from '../routes/url-parser';
 import DrawerInitiator from '../utils/drawer-initiator';
@@ -22,14 +24,44 @@ class App {
   async renderPage() {
     const url = UrlParser.parseActiveUrlWithCombiner();
     const page = routes[url];
-    this._content.innerHTML = await page.render();
-    await page.afterRender();
 
+    if (page) {
+      this._showLoading();
+      try {
+        await this._wait(500);
+
+        this._content.innerHTML = await page.render();
+        await page.afterRender();
+      } catch (error) {
+        console.log('Failed to render page', error);
+      }
+      this._hideLoading();
+    }
     const skipLinkElem = document.querySelector('.skip-link');
     skipLinkElem.addEventListener('click', (event) => {
       event.preventDefault();
       document.querySelector('#mainContent').focus();
     });
+  }
+
+  _wait(ms) {
+    return new Promise((resolve) => setTimeout(resolve, ms));
+  }
+
+  _showLoading() {
+    this._content.innerHTML = `
+      <div class="loading-indicator">
+        <div class="loading-indicator-circle"></div>
+        <span class="loading-indicator-text">Tunggu Sebentar...</span>
+      </div>
+    `;
+  }
+
+  _hideLoading() {
+    const loadingIndicator = this._content.querySelector('.loading-indicator');
+    if (loadingIndicator) {
+      loadingIndicator.remove();
+    }
   }
 }
 
